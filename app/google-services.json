@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "621816113356",
+    "project_id": "neuroscan-22cdf",
+    "storage_bucket": "neuroscan-22cdf.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:621816113356:android:e83894b3bf77a33148fa69",
+        "android_client_info": {
+          "package_name": "com.example.neuroscan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAo3o_BU6cMKfdxAHuF9OOoAn2tAVb7G1w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

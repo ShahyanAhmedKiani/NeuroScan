@@ -1,19 +1,285 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="#050A18">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <!-- Top Accent Glow -->
+    <View
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:background="@drawable/soft_white_glow"
+        android:alpha="0.1"
+        android:backgroundTint="#6366F1"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="-150dp"
+        android:layout_marginStart="-100dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp">
+
+            <!-- Profile Header -->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivProfile"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:src="@android:drawable/ic_menu_gallery"
+                android:background="#1AFFFFFF"
+                android:padding="2dp"
+                app:shapeAppearanceOverlay="@style/CircleImage"
+                app:strokeColor="#33FFFFFF"
+                app:strokeWidth="2dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvGreeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello, Alex"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginStart="16dp"
+                app:layout_constraintTop_toTopOf="@id/ivProfile"
+                app:layout_constraintStart_toEndOf="@id/ivProfile" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your health is our priority"
+                android:textColor="#94A3B8"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/tvGreeting"
+                app:layout_constraintStart_toStartOf="@id/tvGreeting" />
+
+            <ImageButton
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/circle_glass_bg"
+                android:src="@android:drawable/ic_popup_reminder"
+                app:tint="#FFFFFF"
+                app:layout_constraintTop_toTopOf="@id/ivProfile"
+                app:layout_constraintBottom_toBottomOf="@id/ivProfile"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Highlight AI Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardAI"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                app:cardCornerRadius="28dp"
+                app:cardElevation="10dp"
+                android:backgroundTint="#4F46E5"
+                app:layout_constraintTop_toBottomOf="@id/ivProfile">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="24dp">
+
+                    <TextView
+                        android:id="@+id/tvAITitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="AI Analysis"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Upload your latest MRI for a quick AI-assisted screening."
+                        android:textColor="#C7D2FE"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintTop_toBottomOf="@id/tvAITitle"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/ivBrainIllustration" />
+
+                    <ImageView
+                        android:id="@+id/ivBrainIllustration"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@android:drawable/ic_menu_compass"
+                        app:tint="#FFFFFF"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Start Scan"
+                        android:layout_marginTop="20dp"
+                        app:cornerRadius="16dp"
+                        android:backgroundTint="#FFFFFF"
+                        android:textColor="#4F46E5"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintTop_toBottomOf="@id/ivBrainIllustration"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Features Grid -->
+            <TextView
+                android:id="@+id/tvQuickActions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quick Actions"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintTop_toBottomOf="@id/cardAI"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:columnCount="2"
+                android:rowCount="2"
+                android:alignmentMode="alignMargins"
+                android:columnOrderPreserved="false"
+                app:layout_constraintTop_toBottomOf="@id/tvQuickActions">
+
+                <!-- Feature 1: Appointments -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="160dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="#1AFFFFFF"
+                    android:backgroundTint="#0DFFFFFF">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp">
+                        <ImageView android:layout_width="40dp" android:layout_height="40dp" android:src="@android:drawable/ic_menu_my_calendar" app:tint="#F43F5E"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Doctors" android:textColor="#FFFFFF" android:layout_marginTop="12dp" android:textStyle="bold"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Feature 2: Reports -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="160dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="#1AFFFFFF"
+                    android:backgroundTint="#0DFFFFFF">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp">
+                        <ImageView android:layout_width="40dp" android:layout_height="40dp" android:src="@android:drawable/ic_menu_view" app:tint="#10B981"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Reports" android:textColor="#FFFFFF" android:layout_marginTop="12dp" android:textStyle="bold"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Feature 3: Community -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="160dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="#1AFFFFFF"
+                    android:backgroundTint="#0DFFFFFF">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp">
+                        <ImageView android:layout_width="40dp" android:layout_height="40dp" android:src="@android:drawable/ic_menu_share" app:tint="#FBBF24"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Community" android:textColor="#FFFFFF" android:layout_marginTop="12dp" android:textStyle="bold"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Feature 4: Settings -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="160dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="#1AFFFFFF"
+                    android:backgroundTint="#0DFFFFFF">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp">
+                        <ImageView android:layout_width="40dp" android:layout_height="40dp" android:src="@android:drawable/ic_menu_manage" app:tint="#6366F1"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Trackers" android:textColor="#FFFFFF" android:layout_marginTop="12dp" android:textStyle="bold"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </GridLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <!-- Floating Glass Bottom Navigation -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_margin="20dp"
+        app:cardCornerRadius="36dp"
+        app:cardElevation="12dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="#33FFFFFF"
+        android:backgroundTint="#1AFFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="?attr/selectableItemBackgroundBorderless" android:src="@android:drawable/ic_menu_today" app:tint="#6366F1" />
+            <ImageButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="?attr/selectableItemBackgroundBorderless" android:src="@android:drawable/ic_menu_search" app:tint="#94A3B8" />
+            <ImageButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="?attr/selectableItemBackgroundBorderless" android:src="@android:drawable/ic_menu_send" app:tint="#94A3B8" />
+            <ImageButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="?attr/selectableItemBackgroundBorderless" android:src="@android:drawable/ic_menu_my_calendar" app:tint="#94A3B8" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

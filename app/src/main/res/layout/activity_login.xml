@@ -117,6 +117,7 @@ To use this:
                         app:hintTextColor="#6366F1">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textEmailAddress"
@@ -150,6 +151,7 @@ To use this:
                         app:hintTextColor="#6366F1">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etPassword"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textPassword"
@@ -177,15 +179,30 @@ To use this:
                         app:elevation="12dp" />
 
                     <!-- Toggle Mode Link -->
-                    <TextView
-                        android:id="@+id/tvToggleMode"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:orientation="horizontal"
                         android:layout_gravity="center"
-                        android:layout_marginTop="20dp"
-                        android:text="Don't have an account? Create one now"
-                        android:textColor="#94A3B8"
-                        android:textSize="13sp" />
+                        android:layout_marginTop="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Don't have an account? "
+                            android:textColor="#94A3B8"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/tvToggleMode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Create new one"
+                            android:textColor="#6366F1"
+                            android:textSize="13sp"
+                            android:textStyle="bold"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>

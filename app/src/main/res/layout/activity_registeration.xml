@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="REGISTRATION"
-                android:textColor="#10B981"
+                android:textColor="#6366F1"
                 android:textSize="11sp"
                 android:textStyle="bold"
                 android:letterSpacing="0.2"
@@ -92,7 +92,7 @@
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
                         app:startIconDrawable="@android:drawable/ic_menu_myplaces"
-                        app:startIconTint="#10B981">
+                        app:startIconTint="#6366F1">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
@@ -119,7 +119,7 @@
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
                         app:startIconDrawable="@android:drawable/ic_dialog_email"
-                        app:startIconTint="#10B981">
+                        app:startIconTint="#6366F1">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
@@ -146,7 +146,7 @@
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
                         app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
-                        app:startIconTint="#10B981"
+                        app:startIconTint="#6366F1"
                         app:endIconMode="password_toggle"
                         app:endIconTint="#64748B">
 
@@ -175,7 +175,7 @@
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
                         app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
-                        app:startIconTint="#10B981"
+                        app:startIconTint="#6366F1"
                         app:endIconMode="password_toggle"
                         app:endIconTint="#64748B">
 
@@ -184,40 +184,6 @@
                             android:layout_height="wrap_content"
                             android:inputType="textPassword"
                             android:paddingStart="48dp"
-                            android:textColor="#FFFFFF"
-                            android:textSize="15sp" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <!-- Language Selector (Cleaned UI) -->
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/tilLanguage"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:hint=""
-                        android:textColorHint="#64748B"
-                        app:boxStrokeWidth="0dp"
-                        app:boxBackgroundColor="#1AFFFFFF"
-                        app:boxCornerRadiusBottomEnd="20dp"
-                        app:boxCornerRadiusBottomStart="20dp"
-                        app:boxCornerRadiusTopEnd="20dp"
-                        app:boxCornerRadiusTopStart="20dp"
-                        app:endIconMode="custom"
-                        app:endIconDrawable="@android:drawable/arrow_down_float"
-                        app:endIconTint="#10B981">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etLanguage"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="🇺🇸 English"
-                            android:editable="false"
-                            android:focusable="false"
-                            android:clickable="true"
-                            android:paddingStart="20dp"
-                            android:paddingTop="16dp"
-                            android:paddingBottom="16dp"
                             android:textColor="#FFFFFF"
                             android:textSize="15sp" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -233,7 +199,7 @@
                         android:textSize="16sp"
                         android:textStyle="bold"
                         app:cornerRadius="20dp"
-                        android:backgroundTint="#10B981"
+                        android:backgroundTint="#6366F1"
                         android:textColor="#FFFFFF"
                         app:icon="@android:drawable/ic_media_play"
                         app:iconGravity="textEnd"
@@ -267,7 +233,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:text="Log In"
-                    android:textColor="#10B981"
+                    android:textColor="#6366F1"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     tools:ignore="TouchTargetSizeCheck" />

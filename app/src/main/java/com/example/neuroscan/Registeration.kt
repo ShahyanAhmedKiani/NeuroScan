@@ -8,13 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.neuroscan.databinding.ActivityRegisterationBinding
 import com.example.neuroscan.model.User
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.database.FirebaseDatabase
 
 class Registeration : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterationBinding
     private lateinit var auth: FirebaseAuth
-    private lateinit var db: FirebaseFirestore
+    private lateinit var database: FirebaseDatabase
     private val TAG = "RegisterationActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +24,7 @@ class Registeration : AppCompatActivity() {
         Log.d(TAG, "onCreate")
 
         auth = FirebaseAuth.getInstance()
-        db = FirebaseFirestore.getInstance()
+        database = FirebaseDatabase.getInstance()
 
         binding.btnContinue.setOnClickListener { registerUser() }
 
@@ -40,7 +40,6 @@ class Registeration : AppCompatActivity() {
         val email = binding.tilEmail.editText?.text.toString().trim()
         val password = binding.tilPassword.editText?.text.toString().trim()
         val confirm = binding.tilRepeatPassword.editText?.text.toString().trim()
-        val language = binding.etLanguage.text.toString().trim()
 
         if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
             toast("All fields required")
@@ -54,40 +53,25 @@ class Registeration : AppCompatActivity() {
 
         auth.createUserWithEmailAndPassword(email, password)
             .addOnSuccessListener {
+                val firebaseUser = auth.currentUser!!
 
-                val user = auth.currentUser!!
+                val userData = User(
+                    uid = firebaseUser.uid,
+                    name = name,
+                    email = email,
+                    emailVerified = false
+                )
 
-                // ✅ Send verification email and wait for success
-                user.sendEmailVerification()
-                    .addOnSuccessListener {
+                // Save to Realtime Database
+                database.getReference("users").child(firebaseUser.uid).setValue(userData)
 
-                        // ✅ Add user to Firestore AFTER email is sent
-                        val userData = User(
-                            uid = user.uid,
-                            name = name,
-                            email = email,
-                            language = language,
-                            emailVerified = false
-                        )
-
-                        db.collection("users")
-                            .document(user.uid)
-                            .set(userData)
-                            .addOnSuccessListener {
-                                toast("Account created. Verify your email first.")
-                                auth.signOut() // Important: force user to verify before login
-                                startActivity(Intent(this, LoginActivity::class.java))
-                                finish()
-                            }
-                            .addOnFailureListener {
-                                toast(it.message ?: "Database error")
-                            }
-
-                    }
-                    .addOnFailureListener {
-                        toast(it.message ?: "Failed to send verification email")
-                    }
-
+                // Send verification email
+                firebaseUser.sendEmailVerification().addOnCompleteListener {
+                    toast("Account created. Please check your email to verify your account.")
+                    auth.signOut()
+                    startActivity(Intent(this, LoginActivity::class.java))
+                    finishAffinity() // Clear all previous activities
+                }
             }
             .addOnFailureListener {
                 toast(it.message ?: "Registration failed")

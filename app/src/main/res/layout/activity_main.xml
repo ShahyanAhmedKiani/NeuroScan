@@ -7,25 +7,35 @@
     android:layout_height="match_parent"
     android:background="#050A18">
 
-    <!-- Top Accent Glow -->
-    <View
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:background="@drawable/soft_white_glow"
-        android:alpha="0.1"
-        android:backgroundTint="#6366F1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="-150dp"
-        android:layout_marginStart="-100dp" />
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#6366f1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/action" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
         android:scrollbars="none"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottomNav">
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -37,7 +47,7 @@
                 android:id="@+id/ivProfile"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
-                android:src="@android:drawable/ic_menu_gallery"
+                android:src="@drawable/outline_account_circle_24"
                 android:background="#1AFFFFFF"
                 android:padding="2dp"
                 app:shapeAppearanceOverlay="@style/CircleImage"
@@ -47,10 +57,10 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
-                android:id="@+id/tvGreeting"
+                android:id="@+id/tvGreetingHello"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hello, Alex"
+                android:text="Hello, "
                 android:textColor="#FFFFFF"
                 android:textSize="22sp"
                 android:fontFamily="sans-serif-medium"
@@ -59,83 +69,101 @@
                 app:layout_constraintStart_toEndOf="@id/ivProfile" />
 
             <TextView
+                android:id="@+id/tvGreetingName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alex"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:fontFamily="sans-serif-medium"
+                app:layout_constraintTop_toTopOf="@id/tvGreetingHello"
+                app:layout_constraintStart_toEndOf="@id/tvGreetingHello" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Your health is our priority"
                 android:textColor="#94A3B8"
                 android:textSize="14sp"
-                app:layout_constraintTop_toBottomOf="@id/tvGreeting"
-                app:layout_constraintStart_toStartOf="@id/tvGreeting" />
-
-            <ImageButton
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@drawable/circle_glass_bg"
-                android:src="@android:drawable/ic_popup_reminder"
-                app:tint="#FFFFFF"
-                app:layout_constraintTop_toTopOf="@id/ivProfile"
-                app:layout_constraintBottom_toBottomOf="@id/ivProfile"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/tvGreetingHello"
+                app:layout_constraintStart_toStartOf="@id/tvGreetingHello" />
 
             <!-- Highlight AI Card -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardAI"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="262dp"
                 android:layout_marginTop="32dp"
                 app:cardCornerRadius="28dp"
                 app:cardElevation="10dp"
-                android:backgroundTint="#4F46E5"
                 app:layout_constraintTop_toBottomOf="@id/ivProfile">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="24dp">
+                    android:layout_height="match_parent">
 
+                    <!-- Background Image -->
+
+                    <ImageView
+                        android:id="@+id/ivBrainIllustration"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/design"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.65" />
+
+                    <!-- Content on top -->
                     <TextView
                         android:id="@+id/tvAITitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="24dp"
                         android:text="AI Analysis"
                         android:textColor="#FFFFFF"
-                        android:textSize="20sp"
+                        android:textSize="34sp"
                         android:textStyle="bold"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="Upload your latest MRI for a quick AI-assisted screening."
-                        android:textColor="#C7D2FE"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintTop_toBottomOf="@id/tvAITitle"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/ivBrainIllustration" />
-
-                    <ImageView
-                        android:id="@+id/ivBrainIllustration"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:src="@android:drawable/ic_menu_compass"
-                        app:tint="#FFFFFF"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <com.google.android.material.button.MaterialButton
-                        android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/tvAIDescription"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Start Scan"
-                        android:layout_marginTop="20dp"
-                        app:cornerRadius="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Upload your latest MRI for a quick AI-assisted screening."
+                        android:textColor="#C7D2FE"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toStartOf="@id/guideline"
+                        app:layout_constraintStart_toStartOf="@id/tvAITitle"
+                        app:layout_constraintTop_toBottomOf="@id/tvAITitle" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnStartScan"
+                        android:layout_width="162dp"
+                        android:layout_height="44dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="44dp"
                         android:backgroundTint="#FFFFFF"
+                        android:text="Start Scan"
                         android:textColor="#4F46E5"
-                        android:textSize="12sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
-                        app:layout_constraintTop_toBottomOf="@id/ivBrainIllustration"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        app:cornerRadius="16dp"
+                        app:layout_constraintStart_toStartOf="@id/tvAITitle"
+                        app:layout_constraintTop_toBottomOf="@id/tvAIDescription" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -145,108 +173,129 @@
                 android:id="@+id/tvQuickActions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
                 android:text="Quick Actions"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
-                android:layout_marginTop="32dp"
-                app:layout_constraintTop_toBottomOf="@id/cardAI"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardAI" />
 
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:columnCount="2"
-                android:rowCount="2"
                 android:alignmentMode="alignMargins"
+                android:columnCount="2"
                 android:columnOrderPreserved="false"
+                android:rowCount="2"
                 app:layout_constraintTop_toBottomOf="@id/tvQuickActions">
 
-                <!-- Feature 1: Appointments -->
+                <!-- Feature 1: About -->
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardAbout"
                     android:layout_width="0dp"
                     android:layout_height="160dp"
                     android:layout_columnWeight="1"
                     android:layout_margin="8dp"
+                    android:backgroundTint="#0DFFFFFF"
                     app:cardCornerRadius="24dp"
                     app:cardElevation="0dp"
-                    app:strokeWidth="1dp"
                     app:strokeColor="#1AFFFFFF"
-                    android:backgroundTint="#0DFFFFFF">
+                    app:strokeWidth="1dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
                         android:gravity="center"
+                        android:orientation="vertical"
                         android:padding="16dp">
-                        <ImageView android:layout_width="40dp" android:layout_height="40dp" android:src="@android:drawable/ic_menu_my_calendar" app:tint="#F43F5E"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Doctors" android:textColor="#FFFFFF" android:layout_marginTop="12dp" android:textStyle="bold"/>
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/outline_info_24"
+                            app:tint="#F43F5E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="About"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Feature 2: Reports -->
+                <!-- Feature 2: Result -->
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardResult"
                     android:layout_width="0dp"
                     android:layout_height="160dp"
                     android:layout_columnWeight="1"
                     android:layout_margin="8dp"
+                    android:backgroundTint="#0DFFFFFF"
                     app:cardCornerRadius="24dp"
                     app:cardElevation="0dp"
-                    app:strokeWidth="1dp"
                     app:strokeColor="#1AFFFFFF"
-                    android:backgroundTint="#0DFFFFFF">
+                    app:strokeWidth="1dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
                         android:gravity="center"
+                        android:orientation="vertical"
                         android:padding="16dp">
-                        <ImageView android:layout_width="40dp" android:layout_height="40dp" android:src="@android:drawable/ic_menu_view" app:tint="#10B981"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Reports" android:textColor="#FFFFFF" android:layout_marginTop="12dp" android:textStyle="bold"/>
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@android:drawable/ic_menu_view"
+                            app:tint="#10B981" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="Result"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Feature 3: Community -->
+                <!-- Feature 3: Brain Games (Centered) -->
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardBrainGames"
                     android:layout_width="0dp"
                     android:layout_height="160dp"
                     android:layout_columnWeight="1"
                     android:layout_margin="8dp"
+                    android:layout_columnSpan="2"
+                    android:backgroundTint="#0DFFFFFF"
                     app:cardCornerRadius="24dp"
                     app:cardElevation="0dp"
-                    app:strokeWidth="1dp"
                     app:strokeColor="#1AFFFFFF"
-                    android:backgroundTint="#0DFFFFFF">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:padding="16dp">
-                        <ImageView android:layout_width="40dp" android:layout_height="40dp" android:src="@android:drawable/ic_menu_share" app:tint="#FBBF24"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Community" android:textColor="#FFFFFF" android:layout_marginTop="12dp" android:textStyle="bold"/>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
+                    app:strokeWidth="1dp">
 
-                <!-- Feature 4: Settings -->
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="0dp"
-                    android:layout_height="160dp"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="24dp"
-                    app:cardElevation="0dp"
-                    app:strokeWidth="1dp"
-                    app:strokeColor="#1AFFFFFF"
-                    android:backgroundTint="#0DFFFFFF">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
                         android:gravity="center"
+                        android:orientation="vertical"
                         android:padding="16dp">
-                        <ImageView android:layout_width="40dp" android:layout_height="40dp" android:src="@android:drawable/ic_menu_manage" app:tint="#6366F1"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Trackers" android:textColor="#FFFFFF" android:layout_marginTop="12dp" android:textStyle="bold"/>
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@android:drawable/ic_menu_slideshow"
+                            app:tint="#FBBF24" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="Brain Games"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -255,31 +304,17 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <!-- Floating Glass Bottom Navigation -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/bottomNav"
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
-        android:layout_margin="20dp"
-        app:cardCornerRadius="36dp"
-        app:cardElevation="12dp"
-        app:strokeWidth="1dp"
-        app:strokeColor="#33FFFFFF"
-        android:backgroundTint="#1AFFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <ImageButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="?attr/selectableItemBackgroundBorderless" android:src="@android:drawable/ic_menu_today" app:tint="#6366F1" />
-            <ImageButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="?attr/selectableItemBackgroundBorderless" android:src="@android:drawable/ic_menu_search" app:tint="#94A3B8" />
-            <ImageButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="?attr/selectableItemBackgroundBorderless" android:src="@android:drawable/ic_menu_send" app:tint="#94A3B8" />
-            <ImageButton android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="?attr/selectableItemBackgroundBorderless" android:src="@android:drawable/ic_menu_my_calendar" app:tint="#94A3B8" />
-
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+        android:layout_height="wrap_content"
+        android:background="#13254B"
+        app:itemIconTint="@color/bottom_nav_color_selector"
+        app:itemTextColor="@color/bottom_nav_color_selector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/bottom_navigation_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

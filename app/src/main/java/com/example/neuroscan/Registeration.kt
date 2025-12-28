@@ -38,10 +38,12 @@ class Registeration : AppCompatActivity() {
 
         val name = binding.tilName.editText?.text.toString().trim()
         val email = binding.tilEmail.editText?.text.toString().trim()
+        val dob = binding.tilDob.editText?.text.toString().trim()
+        val country = binding.tilCountry.editText?.text.toString().trim()
         val password = binding.tilPassword.editText?.text.toString().trim()
         val confirm = binding.tilRepeatPassword.editText?.text.toString().trim()
 
-        if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
+        if (name.isEmpty() || email.isEmpty() || dob.isEmpty() || country.isEmpty() || password.isEmpty()) {
             toast("All fields required")
             return
         }
@@ -59,6 +61,8 @@ class Registeration : AppCompatActivity() {
                     uid = firebaseUser.uid,
                     name = name,
                     email = email,
+                    dateOfBirth = dob,
+                    country = country,
                     emailVerified = false
                 )
 

@@ -38,6 +38,9 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    aaptOptions {
+        noCompress.add("tflite")
+    }
 }
 
 dependencies {
@@ -52,6 +55,11 @@ dependencies {
     // Optional Analytics
     implementation("com.google.firebase:firebase-analytics")
 
+    //Tflite dependincies
+    implementation("org.tensorflow:tensorflow-lite-support:0.4.4")
+    implementation("org.tensorflow:tensorflow-lite:2.11.0")
+    implementation("org.tensorflow:tensorflow-lite-gpu:2.9.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

@@ -85,12 +85,12 @@
                         android:layout_height="wrap_content"
                         android:hint="Full Name"
                         android:textColorHint="#64748B"
-                        app:boxStrokeWidth="0dp"
                         app:boxBackgroundColor="#1AFFFFFF"
                         app:boxCornerRadiusBottomEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
+                        app:boxStrokeWidth="0dp"
                         app:startIconDrawable="@android:drawable/ic_menu_myplaces"
                         app:startIconTint="#6366F1">
 
@@ -112,12 +112,12 @@
                         android:layout_marginTop="16dp"
                         android:hint="Email Address"
                         android:textColorHint="#64748B"
-                        app:boxStrokeWidth="0dp"
                         app:boxBackgroundColor="#1AFFFFFF"
                         app:boxCornerRadiusBottomEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
+                        app:boxStrokeWidth="0dp"
                         app:startIconDrawable="@android:drawable/ic_dialog_email"
                         app:startIconTint="#6366F1">
 
@@ -125,6 +125,60 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textEmailAddress"
+                            android:paddingStart="48dp"
+                            android:textColor="#FFFFFF"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Date of Birth -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilDob"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:hint="Date of Birth"
+                        android:textColorHint="#64748B"
+                        app:boxBackgroundColor="#1AFFFFFF"
+                        app:boxCornerRadiusBottomEnd="20dp"
+                        app:boxCornerRadiusBottomStart="20dp"
+                        app:boxCornerRadiusTopEnd="20dp"
+                        app:boxCornerRadiusTopStart="20dp"
+                        app:boxStrokeWidth="0dp"
+                        app:startIconDrawable="@android:drawable/ic_menu_my_calendar"
+                        app:startIconTint="#6366F1">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="date"
+                            android:paddingStart="48dp"
+                            android:textColor="#FFFFFF"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Country -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilCountry"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:hint="Country"
+                        android:textColorHint="#64748B"
+                        app:boxBackgroundColor="#1AFFFFFF"
+                        app:boxCornerRadiusBottomEnd="20dp"
+                        app:boxCornerRadiusBottomStart="20dp"
+                        app:boxCornerRadiusTopEnd="20dp"
+                        app:boxCornerRadiusTopStart="20dp"
+                        app:boxStrokeWidth="0dp"
+                        app:startIconDrawable="@android:drawable/ic_menu_mapmode"
+                        app:startIconTint="#6366F1">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
                             android:paddingStart="48dp"
                             android:textColor="#FFFFFF"
                             android:textSize="15sp" />
@@ -139,16 +193,16 @@
                         android:layout_marginTop="16dp"
                         android:hint="Create Password"
                         android:textColorHint="#64748B"
-                        app:boxStrokeWidth="0dp"
                         app:boxBackgroundColor="#1AFFFFFF"
                         app:boxCornerRadiusBottomEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
-                        app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
-                        app:startIconTint="#6366F1"
+                        app:boxStrokeWidth="0dp"
                         app:endIconMode="password_toggle"
-                        app:endIconTint="#64748B">
+                        app:endIconTint="#64748B"
+                        app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
+                        app:startIconTint="#6366F1">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
@@ -168,16 +222,16 @@
                         android:layout_marginTop="16dp"
                         android:hint="Repeat Password"
                         android:textColorHint="#64748B"
-                        app:boxStrokeWidth="0dp"
                         app:boxBackgroundColor="#1AFFFFFF"
                         app:boxCornerRadiusBottomEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
-                        app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
-                        app:startIconTint="#6366F1"
+                        app:boxStrokeWidth="0dp"
                         app:endIconMode="password_toggle"
-                        app:endIconTint="#64748B">
+                        app:endIconTint="#64748B"
+                        app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
+                        app:startIconTint="#6366F1">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
@@ -194,16 +248,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="64dp"
                         android:layout_marginTop="24dp"
+                        android:backgroundTint="#6366F1"
                         android:text="Sign Up Now"
                         android:textAllCaps="false"
+                        android:textColor="#FFFFFF"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         app:cornerRadius="20dp"
-                        android:backgroundTint="#6366F1"
-                        android:textColor="#FFFFFF"
+                        app:elevation="8dp"
                         app:icon="@android:drawable/ic_media_play"
-                        app:iconGravity="textEnd"
-                        app:elevation="8dp" />
+                        app:iconGravity="textEnd" />
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>

@@ -49,7 +49,7 @@ To get a local copy up and running, follow these simple steps.
 
 1.  **Clone the repo**
     ```sh
-    git clone https://github.com/your-username/NeuroScan.git
+    git clone https://github.com/shahyanahmedkiani/NeuroScan.git
     ```
 2.  **Set up Firebase**
     *   Download your `google-services.json` file from your Firebase project settings.

@@ -7,8 +7,6 @@
     android:layout_height="match_parent"
     android:background="#050A18">
 
-    <!-- Warm Accent Glow (Emerald/Teal for Health/Trust Theme) -->
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,7 +18,7 @@
             android:layout_height="wrap_content"
             android:padding="28dp">
 
-            <!-- Top Header & Language Toggle -->
+            <!-- Header -->
             <TextView
                 android:id="@+id/tvStepIndicator"
                 android:layout_width="wrap_content"
@@ -34,7 +32,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="16dp"/>
 
-            <!-- Header Text -->
             <TextView
                 android:id="@+id/tvHeader"
                 android:layout_width="wrap_content"
@@ -95,6 +92,7 @@
                         app:startIconTint="#6366F1">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textPersonName"
@@ -122,6 +120,7 @@
                         app:startIconTint="#6366F1">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textEmailAddress"
@@ -149,9 +148,12 @@
                         app:startIconTint="#6366F1">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etDob"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="date"
+                            android:inputType="none"
+                            android:focusable="false"
+                            android:clickable="true"
                             android:paddingStart="48dp"
                             android:textColor="#FFFFFF"
                             android:textSize="15sp" />
@@ -160,7 +162,7 @@
                     <!-- Country -->
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/tilCountry"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
@@ -175,16 +177,17 @@
                         app:startIconDrawable="@android:drawable/ic_menu_mapmode"
                         app:startIconTint="#6366F1">
 
-                        <com.google.android.material.textfield.TextInputEditText
+                        <AutoCompleteTextView
+                            android:id="@+id/actvCountry"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="text"
+                            android:inputType="none"
                             android:paddingStart="48dp"
                             android:textColor="#FFFFFF"
                             android:textSize="15sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <!-- Create Password -->
+                    <!-- Password fields and button -->
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/tilPassword"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -205,6 +208,7 @@
                         app:startIconTint="#6366F1">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etPassword"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textPassword"
@@ -213,7 +217,6 @@
                             android:textSize="15sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <!-- Repeat Password -->
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/tilRepeatPassword"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -234,6 +237,7 @@
                         app:startIconTint="#6366F1">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etRepeatPassword"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textPassword"
@@ -242,7 +246,6 @@
                             android:textSize="15sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <!-- Main Action Button -->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnContinue"
                         android:layout_width="match_parent"
@@ -262,7 +265,6 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Already have an account? Login Redirect -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

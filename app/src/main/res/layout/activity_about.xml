@@ -132,25 +132,36 @@
                 android:id="@+id/btnWebsite"
                 style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="44dp"
                 android:gravity="start|center_vertical"
                 android:text="Official Website"
                 android:textColor="#6366F1"
-                app:icon="@drawable/ic_web" 
-                app:iconTint="#6366F1"/>
+                app:icon="@drawable/ic_web"
+                app:iconTint="#6366F1" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPrivacy"
                 style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="41dp"
                 android:gravity="start|center_vertical"
                 android:text="Privacy Policy"
                 android:textColor="#6366F1"
-                app:icon="@drawable/ic_privacy" 
-                app:iconTint="#6366F1"/>
+                app:icon="@drawable/ic_privacy"
+                app:iconTint="#6366F1" />
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="24dp"
+                android:gravity="center"
+                android:text="Shahyan Ahmed Kiani © 2025 NeuroScan AI Research"
+                android:textColor="#94A3B8"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"

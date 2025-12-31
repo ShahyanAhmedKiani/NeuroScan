@@ -54,12 +54,32 @@ class LoginActivity : AppCompatActivity() {
                 val user = auth.currentUser!!
                 user.reload().addOnCompleteListener {
                     if (auth.currentUser!!.isEmailVerified) {
-                        // Mark as verified in Realtime Database
-                        database.getReference("users").child(user.uid).child("emailVerified").setValue(true)
-                        
-                        toast("Login successful")
-                        startActivity(Intent(this, MainActivity::class.java))
-                        finishAffinity()
+                        val userRef = database.getReference("users").child(user.uid)
+                        userRef.child("emailVerified").setValue(true)
+
+                        userRef.get().addOnSuccessListener { dataSnapshot ->
+                            val name = dataSnapshot.child("name").getValue(String::class.java)
+                            val userEmail = dataSnapshot.child("email").getValue(String::class.java)
+                            val dob = dataSnapshot.child("dateOfBirth").getValue(String::class.java)
+                            val country = dataSnapshot.child("country").getValue(String::class.java)
+
+                            val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+                            with(sharedPreferences.edit()) {
+                                putString("name", name)
+                                putString("email", userEmail)
+                                putString("dateOfBirth", dob)
+                                putString("country", country)
+                                apply()
+                            }
+
+                            toast("Login successful")
+                            startActivity(Intent(this, MainActivity::class.java))
+                            finishAffinity()
+                        }.addOnFailureListener {
+                            toast("Login successful, but failed to retrieve user data.")
+                            startActivity(Intent(this, MainActivity::class.java))
+                            finishAffinity()
+                        }
                     } else {
                         toast("Please verify your email first.")
                         auth.signOut()

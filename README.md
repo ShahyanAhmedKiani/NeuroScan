@@ -1,66 +1,68 @@
-# NeuroScan - AI-Powered Brain Tumor Detection
-
-![NeuroScan App](app/src/main/res/drawable/design.png) 
+# NeuroScan - AI-Powered Brain Tumor Detection & Brain Training App
 
 ## Overview
 
-NeuroScan is an advanced Android application designed to provide accessible and rapid AI-powered analysis of brain MRI scans. By leveraging a custom-trained TensorFlow Lite model, the app can detect the presence of brain tumors from user-uploaded images, offering a crucial first step in early detection.
+NeuroScan is a comprehensive Android application designed to serve as a supportive tool in the early detection of brain tumors and to promote cognitive health through engaging brain games. The app leverages a TensorFlow Lite model to analyze brain MRI scans and provides users with a platform to manage their profile, track their scan history, and challenge their memory skills.
 
-This project is built with a modern, dark-themed UI and integrates Firebase for a complete user authentication and data management experience.
-
----
-
-## Key Features
-
-*   **User Authentication**: Secure user registration and login functionality using Firebase Authentication, complete with email verification.
-*   **Personalized Dashboard**: A modern, intuitive home screen that greets the user by name and provides quick access to all major features.
-*   **AI-Powered Scanning**: Users can upload MRI images from their gallery or capture them directly with their camera. The integrated TensorFlow Lite model analyzes the image to detect brain tumors and displays the results with a confidence score.
-*   **Profile Management**: Users can create and manage their profiles, including their name, date of birth, country, and a profile picture. All data is securely stored in Firebase.
-*   **Image Management**: Profile pictures are uploaded to Firebase Storage, ensuring efficient and scalable image handling.
-*   **Modern UI/UX**: The app is designed with a clean, dark-themed, and user-friendly interface, using Material Design components for a consistent and professional look.
+This project was developed by **Shahyan Ahmed Kiani**.
 
 ---
 
-## Technical Stack
+## Features
 
-*   **Language**: [Kotlin](https://kotlinlang.org/)
-*   **UI Toolkit**: Android Jetpack with Material Design 3
-*   **Architecture**: View Binding for safe and efficient view access.
-*   **Machine Learning**: [TensorFlow Lite](https://www.tensorflow.org/lite) for on-device model inference.
-*   **Backend Services (Firebase)**:
-    *   [Firebase Authentication](https://firebase.google.com/docs/auth) for user management.
-    *   [Firebase Realtime Database](https://firebase.google.com/docs/database) for storing user profile data.
-    *   [Firebase Storage](https://firebase.google.com/docs/storage) for hosting user-uploaded profile pictures.
-*   **Image Loading**: [Glide](https://github.com/bumptech/glide) for efficient loading and caching of profile images.
-*   **Asynchronous Programming**: Kotlin Coroutines for managing background tasks like model loading and image analysis.
+### Core Medical Features
+- **AI-Powered Tumor Detection**: Users can either capture a new brain MRI image using their camera or select an existing one from their gallery. The app uses a built-in TensorFlow Lite model to analyze the image and detect potential signs of Glioma, Meningioma, or Pituitary tumors.
+- **Scan History**: Every scan and its corresponding result are saved to the user's private account in the Firebase Realtime Database. This allows users to track their scan history over time.
+- **Detailed PDF Reports**: For each scan in the history, users can download a professional, detailed PDF report. The report includes the scan image, detection results, a timestamp, and general information about the detected tumor type.
+
+### User & Profile Management
+- **User Authentication**: Secure user registration and login functionality using Firebase Authentication, complete with email verification.
+- **Persistent Login**: User session data is cached locally using `SharedPreferences`, so users remain logged in even after closing the app.
+- **Profile Management**: Users can view and edit their profile information, including their name, date of birth, and country.
+- **Customizable Profile Picture**: Users can upload and update their profile picture, which is stored as a Base64 string in the database for a lightweight solution.
+
+### Engagement & Gamification
+- **Brain Game (Memory Matrix)**: A classic 4x4 memory matching game designed to challenge and improve cognitive function.
+- **Daily Streak Tracker**: The app tracks the user's daily streak for playing the brain game, encouraging consistent engagement.
+- **Best Score Record**: The game saves the user's best score (lowest number of moves) to complete the game, providing a personal record to beat.
+- **Streak Notifications**: To help maintain the daily streak, the app schedules a notification to remind the user to play if they haven't for half a day.
+
+### Modern UI/UX
+- **Consistent Theming**: The app features a modern, dark-themed UI with a consistent color scheme and Material Design components across all screens.
+- **User-Friendly Inputs**: Custom date pickers and searchable country dropdowns are used in forms to enhance user experience and ensure data accuracy.
+- **Full-Screen Image Viewer**: Images in the scan history can be tapped to be viewed in a full-screen, immersive mode.
 
 ---
 
-## Getting Started
+## Technologies Used
 
-To get a local copy up and running, follow these simple steps.
+- **Language**: [Kotlin](https://kotlinlang.org/)
+- **UI**: Android XML with Material Design 3 Components
+- **Backend & Database**: Firebase (Realtime Database for user data and scan history, Firebase Authentication for user management)
+- **Machine Learning**: TensorFlow Lite for on-device model inference.
+- **Asynchronous Programming**: Kotlin Coroutines for background tasks.
+- **Local Storage**: `SharedPreferences` for caching user session data, game streaks, and best scores.
+- **Image Handling**: [Glide](https://github.com/bumptech/glide) for efficient image loading and Base64 encoding for image storage.
 
-### Prerequisites
+---
 
-*   Android Studio (latest version recommended)
-*   A Firebase project set up with Authentication, Realtime Database, and Storage enabled.
+## Setup and Installation
 
-### Installation
+To set up and run the NeuroScan project on your local machine, follow these steps:
 
-1.  **Clone the repo**
+1.  **Clone the Repository**:
     ```sh
-    git clone https://github.com/shahyanahmedkiani/NeuroScan.git
+    git clone <your-repository-url>
     ```
-2.  **Set up Firebase**
-    *   Download your `google-services.json` file from your Firebase project settings.
-    *   Place the `google-services.json` file in the `app/` directory of the project.
-3.  **Add Your Model**
-    *   Place your trained TensorFlow Lite model file (named `model.tflite`) into the `app/src/main/assets/` directory. If the `assets` folder does not exist, you will need to create it.
-4.  **Sync and Run**
-    *   Open the project in Android Studio, sync the Gradle files, and run the app on an emulator or a physical device.
 
----
+2.  **Firebase Configuration**:
+    - Go to the [Firebase Console](https://console.firebase.google.com/) and create a new project.
+    - Add an Android app to your Firebase project with the package name `com.example.neuroscan`.
+    - Download the `google-services.json` file provided during the setup process and place it in the `D:/NeuroScan/app/` directory.
+    - In the Firebase Console, enable **Authentication** (with the Email/Password provider) and the **Realtime Database**.
 
-## Disclaimer
+3.  **Build and Run**:
+    - Open the project in Android Studio.
+    - Let Gradle sync and download all the required dependencies.
+    - Run the app on an Android emulator or a physical device.
 
-This application is intended for educational and supportive purposes only. It is **not a substitute** for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.

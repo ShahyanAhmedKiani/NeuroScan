@@ -1,24 +1,18 @@
 package com.example.neuroscan
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.neuroscan.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-
-
-
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var auth: FirebaseAuth
-    private lateinit var database: FirebaseDatabase
     private val TAG = "MainActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,45 +22,31 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "onCreate")
 
         auth = FirebaseAuth.getInstance()
-        database = FirebaseDatabase.getInstance()
 
-        // Fetch user name
-        fetchUserName()
+        if (auth.currentUser == null) {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+            return
+        }
+
+        // Load user data
+        loadAndDisplayUserData()
 
         // Click listeners for cards
-        binding.btnStartScan.setOnClickListener {
-
-            startActivity(Intent(this, ScanTumor::class.java))
-        }
-
-        binding.cardAbout.setOnClickListener {
-
-            startActivity(Intent(this, About::class.java))
-        }
-
-        binding.cardResult.setOnClickListener {
-            startActivity(Intent(this, Result::class.java))
-        }
-
-        binding.cardBrainGames.setOnClickListener {
-
-           startActivity(Intent(this, BrainGame::class.java))
-        }
+        binding.btnStartScan.setOnClickListener { startActivity(Intent(this, ScanTumor::class.java)) }
+        binding.cardAbout.setOnClickListener { startActivity(Intent(this, About::class.java)) }
+        binding.cardResult.setOnClickListener { startActivity(Intent(this, Result::class.java)) }
+        binding.cardBrainGames.setOnClickListener { startActivity(Intent(this, BrainGame::class.java)) }
 
         // Bottom navigation listener
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.navigation_home -> {
-                    // Already on home screen, do nothing
-                    true
-                }
+                R.id.navigation_home -> true
                 R.id.navigation_scan -> {
-
                     startActivity(Intent(this, ScanTumor::class.java))
                     true
                 }
                 R.id.navigation_profile -> {
-
                     startActivity(Intent(this, Profile::class.java))
                     true
                 }
@@ -75,23 +55,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun fetchUserName() {
-        val userId = auth.currentUser?.uid
-        if (userId != null) {
-            val userRef = database.getReference("users").child(userId)
-            userRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val name = snapshot.child("name").getValue(String::class.java)
-                    if (name != null) {
-                        binding.tvGreetingName.text = name
-                    }
-                }
+    private fun loadAndDisplayUserData() {
+        val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+        val name = sharedPreferences.getString("name", "User")
+        val profileImageBase64 = sharedPreferences.getString("profileImageUrl", null)
 
-                override fun onCancelled(error: DatabaseError) {
-                    // Handle error
-                    Log.e(TAG, "Failed to fetch user name", error.toException())
-                }
-            })
+        binding.tvGreetingName.text = name
+
+        if (!profileImageBase64.isNullOrEmpty()) {
+            val imageBytes = Base64.decode(profileImageBase64, Base64.DEFAULT)
+            val bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+            binding.ivProfile.setImageBitmap(bitmap)
         }
     }
 
@@ -103,6 +77,8 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         Log.d(TAG, "onResume")
+        // Refresh user data in case it was updated in another activity
+        loadAndDisplayUserData()
     }
 
     override fun onPause() {

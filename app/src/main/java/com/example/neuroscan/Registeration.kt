@@ -1,14 +1,17 @@
 package com.example.neuroscan
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.neuroscan.databinding.ActivityRegisterationBinding
 import com.example.neuroscan.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import java.util.Calendar
 
 class Registeration : AppCompatActivity() {
 
@@ -26,6 +29,9 @@ class Registeration : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
 
+        setupCountryDropDown()
+        setupDatePicker()
+
         binding.btnContinue.setOnClickListener { registerUser() }
 
         binding.tvLoginLink.setOnClickListener {
@@ -34,14 +40,40 @@ class Registeration : AppCompatActivity() {
         }
     }
 
-    private fun registerUser() {
+    private fun setupCountryDropDown() {
+        val countries = resources.getStringArray(R.array.countries_array)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, countries)
+        binding.actvCountry.setAdapter(adapter)
+    }
 
-        val name = binding.tilName.editText?.text.toString().trim()
-        val email = binding.tilEmail.editText?.text.toString().trim()
-        val dob = binding.tilDob.editText?.text.toString().trim()
-        val country = binding.tilCountry.editText?.text.toString().trim()
-        val password = binding.tilPassword.editText?.text.toString().trim()
-        val confirm = binding.tilRepeatPassword.editText?.text.toString().trim()
+    private fun setupDatePicker() {
+        binding.etDob.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val year = calendar.get(Calendar.YEAR)
+            val month = calendar.get(Calendar.MONTH)
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+            val datePickerDialog = DatePickerDialog(
+                this,
+                { _, selectedYear, selectedMonth, selectedDay ->
+                    val selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+                    binding.etDob.setText(selectedDate)
+                },
+                year,
+                month,
+                day
+            )
+            datePickerDialog.show()
+        }
+    }
+
+    private fun registerUser() {
+        val name = binding.etName.text.toString().trim()
+        val email = binding.etEmail.text.toString().trim()
+        val dob = binding.etDob.text.toString().trim()
+        val country = binding.actvCountry.text.toString().trim()
+        val password = binding.etPassword.text.toString().trim()
+        val confirm = binding.etRepeatPassword.text.toString().trim()
 
         if (name.isEmpty() || email.isEmpty() || dob.isEmpty() || country.isEmpty() || password.isEmpty()) {
             toast("All fields required")
@@ -84,30 +116,5 @@ class Registeration : AppCompatActivity() {
 
     private fun toast(msg: String) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Log.d(TAG, "onStart")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d(TAG, "onResume")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d(TAG, "onPause")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d(TAG, "onStop")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(TAG, "onDestroy")
     }
 }

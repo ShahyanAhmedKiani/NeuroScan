@@ -1,4 +1,5 @@
 # NeuroScan - AI-Powered Brain Tumor Detection & Brain Training App
+![NeuroScan App](app/src/main/res/drawable/design.png) 
 
 ## Overview
 

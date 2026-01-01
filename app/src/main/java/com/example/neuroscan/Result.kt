@@ -55,6 +55,7 @@ class Result : AppCompatActivity() {
                 for (scanSnapshot in snapshot.children) {
                     val scanResult = scanSnapshot.getValue(ScanResult::class.java)
                     if (scanResult != null) {
+                        scanResult.key = scanSnapshot.key
                         scanResults.add(scanResult)
                     }
                 }
